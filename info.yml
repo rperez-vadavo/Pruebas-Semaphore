@@ -1,0 +1,21 @@
+---
+- name: Explorando el servidor y creando archivos
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: 1. Crear una carpeta de pruebas
+      ansible.builtin.file:
+        path: "~/prueba_ansible"
+        state: directory
+        mode: '0755'
+
+    - name: 2. Crear un archivo de texto con informacion automatica
+      ansible.builtin.copy:
+        dest: "~/prueba_ansible/reporte.txt"
+        content: |
+          ¡Hola! Este archivo ha sido creado automaticamente por Ansible y Semaphore.
+          
+          --- DATOS DEL SERVIDOR ---
+          Nombre de la maquina: {{ ansible_hostname }}
+          Sistema Operativo: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Memoria total: {{ ansible_memtotal_mb }} MB
