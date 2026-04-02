@@ -1,0 +1,7 @@
+---
+- name: Prueba de conexion Ping
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Comprobar conexion con el servidor
+      ansible.builtin.ping:
